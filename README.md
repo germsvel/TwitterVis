@@ -1,5 +1,5 @@
 TwitterVis
 ==========
 
-TwitterVis enables you to visualize trending hashtags on Twitter.
+TwitterVis lets you visualize trending hashtags on Twitter.
 It uses Twitter's API for data and d3.js for graphs.
