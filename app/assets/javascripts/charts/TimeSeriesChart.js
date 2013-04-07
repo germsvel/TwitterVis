@@ -235,13 +235,14 @@ function TimeSeriesChart() {
                         d0 = data[i - 1],
                         d1 = data[i],
                         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                    // console.log(d3.mouse(this));
                     tooltip.attr("transform", "translate(" + xScale(d.date) + ",0)");
                     tooltip.select("text.tooltipDate").text( formatAMPM(d.date) )
                     tooltip.select("text.running").text(d.running)
                     tooltip.select("text.waiting").text(d.waiting);
                 }
 
-                g
+                d3.select(".overlay")
                     .on("mouseover", function() { tooltip.style("display", null); })
                     .on("mouseout", function() { tooltip.style("display", "none"); })
                     .on("mousemove", mousemove);

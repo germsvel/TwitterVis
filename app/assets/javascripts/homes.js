@@ -16,44 +16,46 @@
 // 	{'category': 'tweetsHigh', 'count': 200}
 // ];
 
-var timeSeriesChart = new TimeSeriesChart().showOverlay(true);
+$('input[name="hashtagLookup"]').focus();
+
+var timeSeriesChart = new TimeSeriesChart();
+  // .showOverlay(true);
 var barChart = new BarChart();
 var pieChart = new PieChart();
 
 $(document).ready(function($) {
-	setTimeout(function() {
-		$('.chart').html('');
+	$.get(document.URL + '/data', function(rawData) {
+    drawDashboard(rawData);
 
-		drawDashboard();
-
-		$(window).resize(function() {
-			drawDashboard();
-		})
-
-	}, 1000);
+  	$(window).resize(function() {
+  		drawDashboard(rawData);
+  	})
+  });
 
 });
 
-function drawDashboard() {
-
-	$.get(document.URL + '/data', function(rawData) {
-
+function drawDashboard(rawData) {
 		aggregateData = {};		
 		rawData.forEach(function(d) {
-            aggregateData[d.substr(0,10) + ' ' + d.substr(12,5)]++;
-            // data.push(
-            // 	{
-            // 		'date': d.substr(0,10) + ' ' + d.substr(12,8),
-            // 		'count': 
-            // 	}
-            // );
-        });
+      if ( aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] ) {
+        aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)]++;
+      } else {
+        aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] = 1;
+      }
+    });
 
-        console.log(aggregateData);
+    data = [];
+    $.each(aggregateData, function(d, c) {
+      data.push({
+        'date': d,
+        'count': c
+      });
+    });
 
-		// d3.select('#timeSeriesChart')
-		// 	.data([dataset1])
-		// 	.call(timeSeriesChart);
+    $('.chart').html('');
+		d3.select('#timeSeriesChart')
+			.data([data])
+			.call(timeSeriesChart);
 
 		// d3.select('#barChart')
 		// 	.data([categoryData])
@@ -62,8 +64,5 @@ function drawDashboard() {
 		// d3.select('#pieChart')
 		// 	.data([categoryData])
 		// 	.call(pieChart);
-
-	});
-
 
 }
