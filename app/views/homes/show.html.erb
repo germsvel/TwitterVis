@@ -1,4 +1,68 @@
-<h1>Homes#show</h1>
-<p>Find me in app/views/homes/show.html.erb</p>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="assets/charts/TimeSeriesChart.js"></script>
+<script src="assets/homes.js"></script>
 
+<div class="container">
+	<div class="page-head">
+		<h1>TwitterVis</h1>
+		<h2>it's time to <span class="visualize">#visualize</span></h2>
+	</div>
 
+	<div class="row margin-top">
+		<div class="span9">
+			<h3 class="title">Now visualizing: <span class="current-visualize"><%= @hashtag %></span></h3>
+		</div>
+
+		<div class="span3 hashtag-form">
+			<h4 class="text-center">Try it out!</h4>
+			<form class="form-inline pull-right" action="" method="post">
+			  <div class="input-prepend input-append">
+				  <span class="add-on">#</span>
+				  <input class="span2" id="prependedInput" type="text" name="hashtagLookup" placeholder="hashtag">
+				  <button type="submit" class="btn">Visualize!</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div class="chart-wrapper">
+				<h4 class="text-center">Tweets Per Minute</h4>
+				<div id="timeSeriesChart" class="chart">
+					<div class="loading">
+						<img class="loading" src="assets/chart-loading.gif" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="span6">
+			<div class="chart-wrapper">
+				<h4 class="text-center">Something Else</h4>
+				<div id="barChart" class="chart">
+					<div class="loading">
+						<img class="loading" src="assets/chart-loading.gif" alt="">
+					</div>
+				</div>
+			</div>				
+		</div>
+
+		<div class="span6">
+			<div class="chart-wrapper">
+				<h4 class="text-center">One More Thing</h4>
+				<div id="pieChart" class="chart">
+					<div class="loading">
+							<img class="loading" src="assets/chart-loading.gif" alt="">
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+</div>

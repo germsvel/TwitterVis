@@ -1,12 +1,20 @@
 class HomesController < ApplicationController
 
 
-  def index
-    params[:hashtag] = "#visualize"
+	def index
+	end
 
+  def data
     @info = Home.search_hashtag(params[:hashtag])
     render :json => @info
+  end
 
+  def redirect
+  	redirect_to :action => "show", :hashtag => params[:hashtagLookup]
+  end
+
+  def show
+  	@hashtag = params[:hashtag]
   end
 
 
