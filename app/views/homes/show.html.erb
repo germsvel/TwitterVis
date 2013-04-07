@@ -1,66 +1,77 @@
-<div class="container">
-	<div class="row">
-		<div class="span6">
-			<div class="page-head">
-				<h1>TwitterVis</h1>
-				<h2>it's time to <span class="visualize">#visualize</span></h2>
-			</div>
-		</div>
-
-		<div class="span6">
-			<div class="row hashtag-form">
-				<div class="span2"><h4 class="text-right">Try it out!</h4></div>
-				<div class="span4">
-					<form class="form-inline" method="post" action="">
-					  <div class="input-prepend input-append pull-right">
-						  <span class="add-on">#</span>
-						  <input class="" id="prependedInput" type="text" name="hashtagLookup" placeholder="hashtag">
-						  <button type="submit" class="btn">Visualize!</button>
-						</div>
-					</form>
+	<div class="container">
+		<div class="row">
+			<div class="span6">
+				<div class="page-head">
+					<h1>TwitterVis</h1>
+					<h2>it's time to <span class="visualize">#visualize</span></h2>
 				</div>
 			</div>
-			<h3 class="title text-right">Now visualizing: <span class="current-visualize">#visualize</span></h3>
+	
+			<div class="span6">
+				<div class="row hashtag-form">
+					<div class="span3">
+						<h4 class="text-right">Search Twitter:</h4>
+					</div>
+					<div class="span3">
+						<form class="form-inline" method="post" action="">
+						  <div class="input-prepend input-append">
+							  <span class="add-on">#</span>
+							  <input class="input-small" id="prependedInput" type="text" name="hashtagLookup" placeholder="hashtag">
+							  <button type="submit" class="btn">Visualize!</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="title text-right margin-top">
+					<h3>Now visualizing: </h3>
+					<h3 class="current-visualize">#<%= @hashtag %></h3>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="span12">
-			<div class="chart-wrapper">
-				<h3 class="text-center">Tweets Per Second</h3>
-				<div id="timeSeriesChart" class="chart">
-					<div class="loading">
-						<img class="loading" src="assets/chart-loading.gif" alt="">
+<div class="wrapper">
+	<div class="container">
+		
+			<div class="row">
+				<div class="span12">
+					<div class="chart-wrapper">
+						<h3 class="text-center">Tweets Per Second</h3>
+						<div id="timeSeriesChart" class="chart">
+							<div class="loading">
+								<img class="loading" src="assets/chart-loading.gif" alt="">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<div class="row margin-top">
-
-		<div class="span6">
-			<div class="chart-wrapper">
-				<h4 class="text-center">Something Else</h4>
-				<div id="barChart" class="chart">
-					<div class="loading">
-						<img class="loading" src="assets/chart-loading.gif" alt="">
+		
+			<div class="row margin-top">
+		
+				<div class="span6">
+					<div class="chart-wrapper">
+						<h4 class="text-center">By Location</h4>
+						<div id="pieChart" class="chart">
+							<div class="loading">
+								<img class="loading" src="assets/chart-loading.gif" alt="">
+							</div>
+						</div>
+					</div>				
+				</div>
+		
+				<div class="span6">
+					<div class="chart-wrapper">
+						<h4 class="text-center">This Month</h4>
+						<div id="barChart" class="chart">
+							<div class="loading">
+									<img class="loading" src="assets/chart-loading.gif" alt="">
+								</div>
+						</div>
 					</div>
 				</div>
-			</div>				
-		</div>
-
-		<div class="span6">
-			<div class="chart-wrapper">
-				<h4 class="text-center">One More Thing</h4>
-				<div id="pieChart" class="chart">
-					<div class="loading">
-							<img class="loading" src="assets/chart-loading.gif" alt="">
-						</div>
-				</div>
 			</div>
+				
+				
 		</div>
 	</div>
-		
-		
 </div>

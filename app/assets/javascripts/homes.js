@@ -10,15 +10,31 @@
 //     }
 // }
 
-// var categoryData = [
-// 	{'category': 'tweetsLow', 'count': 432},
-// 	{'category': 'tweetsMed', 'count': 155},
-// 	{'category': 'tweetsHigh', 'count': 200}
-// ];
+var pieData = [
+	{'category': 'USA', 'count': 432},
+	{'category': 'Europe', 'count': 255},
+  {'category': 'Asia', 'count': 50},
+	{'category': 'Austrailia', 'count': 13}
+];
+
+var barData = [
+  {'category': 'Jan', 'count': 1},
+  {'category': 'Feb', 'count': 14},
+  {'category': 'Mar', 'count': 25},
+  {'category': 'Apr', 'count': 40},
+  {'category': 'May', 'count': 14},
+  {'category': 'Jun', 'count': 45},
+  {'category': 'Jul', 'count': 76},
+  {'category': 'Aug', 'count': 34},
+  {'category': 'Sep', 'count': 23},
+  {'category': 'Oct', 'count': 24},
+  {'category': 'Nov', 'count': 36},
+  {'category': 'Dec', 'count':  2}
+];
 
 var timeSeriesChart = new TimeSeriesChart()
   .showOverlay(true);
-var barChart = new BarChart();
+var barChart = new BarChart().oneColor(true);
 var pieChart = new PieChart();
 
 $(document).ready(function($) {
@@ -42,13 +58,14 @@ function drawDashboard(data) {
 			.data([data.timeSeries])
 			.call(timeSeriesChart);
 
-		// d3.select('#barChart')
-		// 	.data([categoryData])
-		// 	.call(barChart);
+		d3.select('#pieChart')
+			.data([pieData])
+			.call(pieChart);
 
-		// d3.select('#pieChart')
-		// 	.data([categoryData])
-		// 	.call(pieChart);
+    d3.select('#barChart')
+     .data([barData])
+     .call(barChart);
+
 
 }
 
