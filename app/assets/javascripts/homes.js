@@ -39,7 +39,7 @@ function drawDashboard(data) {
 		
     $('.chart').html('');
 		d3.select('#timeSeriesChart')
-			.data([data])
+			.data([data.timeSeries])
 			.call(timeSeriesChart);
 
 		// d3.select('#barChart')
@@ -63,10 +63,9 @@ function aggregateData(rawData) {
     }
   });
 
-  data = [];
+  data = {timeSeries: [], category: []};
   $.each(aggregateData, function(d, c) {
-    console.log(d);
-    data.push({
+    data.timeSeries.push({
       'date': d,
       'count': c
     });

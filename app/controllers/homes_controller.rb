@@ -2,6 +2,7 @@ class HomesController < ApplicationController
 
 
 	def index
+    render "show"
 	end
 
   def data
