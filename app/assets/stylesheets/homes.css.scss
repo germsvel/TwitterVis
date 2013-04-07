@@ -24,17 +24,25 @@ body {
 		font-weight: 100;
 	}
 
+	span {
+		font-size: 16px;
+	}
+
 	.visualize {
 		// color: 
 	}
 }
 
 .margin-top {
+	margin-top: 20px;
+}
+
+.margin-top-large {
 	margin-top: 40px;
 }
 
 .title {
-	margin-top: 35px;
+	// margin-top: 15px;
 	margin-right: 10px;
 	color: white;
 
@@ -48,10 +56,11 @@ body {
 }
 
 .hashtag-form {
-	margin-top: 30px;
+	// margin-top: 30px;
 
 	h4 {
 		color: white;
+		margin-bottom: 0;
 	}
 
 	form {
@@ -68,7 +77,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.35);
 	border: 1px solid rgb(61, 61, 61);
 	border-radius: 10px;
-	margin-top: 20px;
 	padding: 15px;
 	color: white;
 

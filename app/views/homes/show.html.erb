@@ -1,30 +1,24 @@
 	<div class="container">
-		<div class="row">
+		<div class="page-head text-center">
+			<h1>TwitterVis</h1>
+			<h4>it's time to <span class="visualize">#visualize</span></h4>
+		</div>
+		<div class="row">	
 			<div class="span6">
-				<div class="page-head">
-					<h1>TwitterVis</h1>
-					<h2>it's time to <span class="visualize">#visualize</span></h2>
+				<div class="title margin-top-large">
+					<h3>Now visualizing: <span class="current-visualize">#<%= @hashtag %></span></h3>
 				</div>
 			</div>
-	
 			<div class="span6">
-				<div class="row hashtag-form">
-					<div class="span3">
-						<h4 class="text-right">Search Twitter:</h4>
-					</div>
-					<div class="span3">
-						<form class="form-inline" method="post" action="">
-						  <div class="input-prepend input-append">
-							  <span class="add-on">#</span>
-							  <input class="input-small" id="prependedInput" type="text" name="hashtagLookup" placeholder="hashtag">
-							  <button type="submit" class="btn">Visualize!</button>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="title text-right margin-top">
-					<h3>Now visualizing: </h3>
-					<h3 class="current-visualize">#<%= @hashtag %></h3>
+				<div class="hashtag-form">
+					<h4 class="text-right">Search Twitter:</h4>
+					<form class="form-inline pull-right" method="post" action="">
+					  <div class="input-prepend input-append">
+						  <span class="add-on">#</span>
+						  <input class="input-small" id="prependedInput" type="text" name="hashtagLookup" placeholder="hashtag">
+						  <button type="submit" class="btn btn-primary">Visualize!</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -47,7 +41,6 @@
 			</div>
 		
 			<div class="row margin-top">
-		
 				<div class="span6">
 					<div class="chart-wrapper">
 						<h4 class="text-center">By Location</h4>
