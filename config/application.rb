@@ -12,7 +12,7 @@ end
 module TwitterVis
   class Application < Rails::Application
 
-     config.twitterKeys = {
+    config.twitterKeys = {
         consumer_key:        ENV["twitter_consumer_key"],
         consumer_secret:     ENV["twitter_consumer_secret"],
         oauth_token:         ENV["twitter_oauth_token"],

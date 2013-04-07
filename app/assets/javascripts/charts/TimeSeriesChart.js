@@ -1,3 +1,6 @@
+// Usage notes:
+//   - data has to be in ascending order
+
 function TimeSeriesChart() {
 
     var margin      = {top: 10, right: 10, bottom: 110, left: 40},
@@ -229,23 +232,24 @@ function TimeSeriesChart() {
 
                 var tooltip = d3.select(this).select(".overlayTooltip");
 
+                // console.log(data);
                 function mousemove() {
                     var x0 = xScale.invert(d3.mouse(this)[0]),
-                        i = bisectDate(data, x0, 1)
+                        i = bisectDate(data, x0, 1),
                         d0 = data[i - 1],
                         d1 = data[i],
                         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                    // console.log(x0 + ' ' + i);
+                    // console.log(x0);
                     // console.log(d3.mouse(this));
                     tooltip.attr("transform", "translate(" + xScale(d.date) + ",0)");
                     tooltip.select("text.tooltipDate").text( formatAMPM(d.date) )
-                    tooltip.select("text.running").text(d.running)
-                    tooltip.select("text.waiting").text(d.waiting);
+                    tooltip.select("text.count").text(d.count)
                 }
 
-                d3.select(".overlay")
-                    .on("mouseover", function() { tooltip.style("display", null); })
-                    .on("mouseout", function() { tooltip.style("display", "none"); })
-                    .on("mousemove", mousemove);
+                g.on("mouseover", function() { tooltip.style("display", null); });
+                g.on("mouseout", function() { tooltip.style("display", "none"); });
+                g.select(".overlay").on("mousemove", mousemove);
 
             }
 

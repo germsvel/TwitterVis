@@ -1,8 +1,8 @@
-// // dataset1
-// var dataset1 = new Array();
+// dataset1
+// var data = new Array();
 // for (var day=10; day < 30; day++) { 
 //     for (hour=10; hour < 24; hour++) { 
-//         dataset1.push({
+//         data.push({
 //             'date': '2013-02-'+day+' '+hour+':00:00',
 //             'running': Math.floor(Math.random()*200),
 //             'waiting': Math.floor(Math.random()*100),
@@ -16,42 +16,27 @@
 // 	{'category': 'tweetsHigh', 'count': 200}
 // ];
 
-$('input[name="hashtagLookup"]').focus();
-
-var timeSeriesChart = new TimeSeriesChart();
-  // .showOverlay(true);
+var timeSeriesChart = new TimeSeriesChart()
+  .showOverlay(true);
 var barChart = new BarChart();
 var pieChart = new PieChart();
 
 $(document).ready(function($) {
+  $('input[name="hashtagLookup"]').focus();
+
 	$.get(document.URL + '/data', function(rawData) {
-    drawDashboard(rawData);
+    data = aggregateData(rawData);
+    drawDashboard(data);
 
   	$(window).resize(function() {
-  		drawDashboard(rawData);
-  	})
+  		drawDashboard(data);
+  	});
   });
 
 });
 
-function drawDashboard(rawData) {
-		aggregateData = {};		
-		rawData.forEach(function(d) {
-      if ( aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] ) {
-        aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)]++;
-      } else {
-        aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] = 1;
-      }
-    });
-
-    data = [];
-    $.each(aggregateData, function(d, c) {
-      data.push({
-        'date': d,
-        'count': c
-      });
-    });
-
+function drawDashboard(data) {
+		
     $('.chart').html('');
 		d3.select('#timeSeriesChart')
 			.data([data])
@@ -65,4 +50,43 @@ function drawDashboard(rawData) {
 		// 	.data([categoryData])
 		// 	.call(pieChart);
 
+}
+
+function aggregateData(rawData) {
+  rawData.sort(d3.ascending);
+  aggregateData = {};   
+  rawData.forEach(function(d) {
+    if ( aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] ) {
+      aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)]++;
+    } else {
+      aggregateData[d.substr(0,10) + ' ' + d.substr(11,8)] = 1;
+    }
+  });
+
+  data = [];
+  $.each(aggregateData, function(d, c) {
+    console.log(d);
+    data.push({
+      'date': d,
+      'count': c
+    });
+  });
+
+  // var now = new Date();
+  // var datetime = new Date();
+  // datetime.setMinutes(now.getMinutes() - 60);
+  // for (var minute = 0; minute < 60; minute++) {
+  //   for (var second = 0; second < 60; second++) {
+  //     datetime.setSeconds(datetime.getSeconds() + 1);
+  //     var thisTime = datetime.getFullYear() + "-" + ('0' + (datetime.getMonth()+1)).slice(-2) + '-' + ('0' + (datetime.getDate())).slice(-2) + ' ' + ('0' + (datetime.getHours())).slice(-2) + ':' + ('0' + (datetime.getMinutes())).slice(-2) + ':' + ('0' + (datetime.getSeconds())).slice(-2);
+  //     var thisCount = (aggregateData[thisTime]) ? aggregateData[thisTime] : 0;
+  //     console.log(thisTime);
+  //     data.push({
+  //       'date': thisTime,
+  //       'count': thisCount
+  //     });
+  //   };
+  // };
+
+  return data;
 }
